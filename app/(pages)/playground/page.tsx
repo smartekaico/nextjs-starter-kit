@@ -30,8 +30,8 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 interface Message {
   role: "user" | "assistant";
@@ -84,13 +84,12 @@ export default function PlaygroundPage() {
         systemPrompt,
       },
     });
-    
 
   const components = {
     code({ node, inline, className, children, ...props }: CodeProps) {
-      const match = /language-(\w+)/.exec(className || '');
-      const language = match ? match[1] : 'text';
-      const code = String(children).replace(/\n$/, '');
+      const match = /language-(\w+)/.exec(className || "");
+      const language = match ? match[1] : "text";
+      const code = String(children).replace(/\n$/, "");
 
       return !inline ? (
         <div className="relative rounded-lg overflow-hidden my-2">
@@ -117,11 +116,14 @@ export default function PlaygroundPage() {
           </SyntaxHighlighter>
         </div>
       ) : (
-        <code className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5" {...props}>
+        <code
+          className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5"
+          {...props}
+        >
           {children}
         </code>
       );
-    }
+    },
   };
 
   return (
@@ -140,7 +142,9 @@ export default function PlaygroundPage() {
               variant="outline"
               className="text-xs dark:border-zinc-800 border-zinc-200"
             >
-              {model?.split(":")[1] === "deepseek-reasoner" ? "deepseek-r" : model?.split(":")[1]}
+              {model?.split(":")[1] === "deepseek-reasoner"
+                ? "deepseek-r"
+                : model?.split(":")[1]}
             </Badge>
           </div>
           <div className="flex items-center gap-2">
@@ -308,7 +312,10 @@ export default function PlaygroundPage() {
               <TabsTrigger value="model" className="flex-1 text-xs sm:text-sm">
                 Model
               </TabsTrigger>
-              <TabsTrigger value="parameters" className="flex-1 text-xs sm:text-sm">
+              <TabsTrigger
+                value="parameters"
+                className="flex-1 text-xs sm:text-sm"
+              >
                 Parameters
               </TabsTrigger>
               <TabsTrigger value="system" className="flex-1 text-xs sm:text-sm">

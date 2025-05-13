@@ -1,10 +1,6 @@
 import { registry } from "@/utils/registry";
 import { groq } from "@ai-sdk/groq";
-import {
-  extractReasoningMiddleware,
-  streamText,
-  experimental_wrapLanguageModel as wrapLanguageModel,
-} from "ai";
+import { extractReasoningMiddleware, streamText, wrapLanguageModel } from "ai";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -86,7 +82,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return result.toDataStreamResponse({
-    sendReasoning: true,
-  });
+  return result.toDataStreamResponse({ sendReasoning: true });
 }
